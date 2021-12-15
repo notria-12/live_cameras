@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:flutter_mjpeg/flutter_mjpeg.dart';
 
 import 'package:flutter/material.dart';
+
+import 'mjpeg.dart';
 
 void main() async {
   runApp(const MyApp());
@@ -43,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Stream<List<int>> getVideo() async* {
     // File fileHandle = File('test_frame.jpg');
     Uri url = Uri.parse(
-        "https://zm.apagaofogo.eco.br/zm/cgi-bin/zms?monitor=22&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJab25lTWluZGVyIiwiaWF0IjoxNjM5NTczNDA2LCJleHAiOjE2Mzk1NzcwMDYsInVzZXIiOiJhcGFnYW9mb2dvIiwidHlwZSI6ImFjY2VzcyJ9.FDo8kUwUEfwwJ-ndFEdcoa3oaLxp2FJAH1zvfJ89OGQ&mode=jpeg&scale=100&maxfps=2");
+        "https://zm.apagaofogo.eco.br/zm/cgi-bin/zms?monitor=22&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJab25lTWluZGVyIiwiaWF0IjoxNjM5NTg2MDUxLCJleHAiOjE2Mzk1ODk2NTEsInVzZXIiOiJhcGFnYW9mb2dvIiwidHlwZSI6ImFjY2VzcyJ9.qaHozckT3siVNP41reg7qSeQSx9__alKa-qzpTqshkY&mode=jpeg&scale=100&maxfps=2");
     var client = HttpClient();
     Map<String, String> bodyMap = {"name": "camera.getLivePreview"};
 
@@ -68,6 +69,17 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Expanded(
+              // child: StreamBuilder(
+              //   stream: getVideo(),
+              //   builder: (context, snapshot) {
+              //     if (snapshot.hasData) {
+              //       print((snapshot.data));
+              //       return Container();
+              //     } else {
+              //       return Container();
+              //     }
+              //   },
+              // ),
               child: Center(
                 child: Mjpeg(
                   isLive: true,
