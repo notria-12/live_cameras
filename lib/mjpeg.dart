@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:io';
+// import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -46,7 +46,7 @@ class Mjpeg extends HookWidget {
   const Mjpeg({
     this.isLive = false,
     this.width,
-    this.timeout = const Duration(seconds: 5),
+    this.timeout = const Duration(seconds: 20),
     this.height,
     this.fit,
     required this.stream,
@@ -203,7 +203,7 @@ class _StreamManager {
         }, cancelOnError: true);
       } else {
         errorState.value = [
-          HttpException('Stream returned ${response.statusCode} status'),
+          Exception('Stream returned ${response.statusCode} status'),
           StackTrace.current
         ];
         image.value = null;
